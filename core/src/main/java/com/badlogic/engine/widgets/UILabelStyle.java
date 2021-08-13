@@ -1,17 +1,13 @@
 package com.badlogic.engine.widgets;
 
-import com.badlogic.engine.controller.AssetController;
+import com.badlogic.engine.controller.AssetContainer;
 import com.badlogic.engine.enums.UIFont;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Null;
 
 public class UILabelStyle {
     public BitmapFont font;
@@ -25,14 +21,19 @@ public class UILabelStyle {
     private float outline = 0;
     private Color outlineColor = Color.valueOf("ffffff");
 
-    public UILabelStyle() {
-        this.font=AssetController.getInstance().getFont(UIFont.ROBOTO_BOLD);
-        this.fontColor=Color.valueOf("ffffff");
+    public UILabelStyle(){
         updateShader();
     }
 
+    public static UILabelStyle getStyle() {
+        UILabelStyle labelStyle=new UILabelStyle();
+        labelStyle.font= AssetContainer.getInstance().getFont(UIFont.ROBOTO_BOLD);
+        labelStyle.fontColor=Color.valueOf("ffffff");
+        return labelStyle;
+    }
+
     public UILabelStyle(UIFont font,String color){
-        this.font= AssetController.getInstance().getFont(font);
+        this.font= AssetContainer.getInstance().getFont(font);
         this.fontColor=Color.valueOf(color);
         updateShader();
     }
@@ -58,7 +59,7 @@ public class UILabelStyle {
 
     public void updateShader() {
         if (distanceShader==null){
-            distanceShader = AssetController.getInstance().getFontShader();
+            distanceShader = AssetContainer.getInstance().getFontShader();
         }
     }
 

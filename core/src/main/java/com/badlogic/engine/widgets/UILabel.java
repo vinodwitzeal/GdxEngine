@@ -1,18 +1,16 @@
 package com.badlogic.engine.widgets;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.BitmapFontCache;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.StringBuilder;
 import com.badlogic.gdx.utils.Null;
+import com.badlogic.gdx.utils.StringBuilder;
 
 public class UILabel extends Widget {
     static private final Color tempColor = new Color();
@@ -48,7 +46,7 @@ public class UILabel extends Widget {
     }
 
     public UILabel(CharSequence text,float fontSize){
-       this(text,new UILabelStyle(),fontSize);
+       this(text,UILabelStyle.getStyle(),fontSize);
     }
 
     public void setStyle(UILabelStyle style) {

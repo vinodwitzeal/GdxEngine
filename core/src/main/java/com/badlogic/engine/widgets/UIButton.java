@@ -1,20 +1,16 @@
 package com.badlogic.engine.widgets;
 
-import com.badlogic.engine.controller.AssetController;
+import com.badlogic.engine.controller.AssetContainer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Disableable;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Array;
 
 public class UIButton extends Table implements Disableable {
     private boolean disabled;
@@ -81,10 +77,13 @@ public class UIButton extends Table implements Disableable {
         public Color unpressedColor;
         public Color pressedColor;
 
-        public UIButtonStyle(){
-            background= AssetController.getInstance().boxDrawable;
-            unpressedColor=Color.valueOf("ffffff");
-            pressedColor= Color.valueOf("dddddd");
+
+        public static UIButtonStyle getStyle(){
+            UIButtonStyle buttonStyle=new UIButtonStyle();
+            buttonStyle.background= AssetContainer.getInstance().getRoundedDrawable(5,"ffff00");
+            buttonStyle.unpressedColor=Color.valueOf("ffffff");
+            buttonStyle.pressedColor= Color.valueOf("dddddd");
+            return buttonStyle;
         }
     }
 }

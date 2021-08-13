@@ -1,22 +1,16 @@
 package com.badlogic.engine.widgets;
 
-import com.badlogic.engine.controller.AssetController;
 import com.badlogic.engine.enums.UIFont;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class UITextButton extends UIButton{
     private UILabel label;
     public UITextButton(String text,UITextButtonStyle style) {
-        super(style);
-        UILabelStyle labelStyle=new UILabelStyle(style.font,style.fontColor);
-        label=new UILabel(text,labelStyle);
-        add(label);
-        setSize(getPrefWidth(),getPrefHeight());
+        this(text,style,16);
     }
 
     public UITextButton(String text,UITextButtonStyle style,float fontSize){
         super(style);
+        if (style.font==null)throw new IllegalArgumentException("Font cannot be null");
         UILabelStyle labelStyle=new UILabelStyle(style.font,style.fontColor);
         label=new UILabel(text,labelStyle,fontSize);
         add(label);
@@ -34,10 +28,17 @@ public class UITextButton extends UIButton{
         public UIFont font;
         public String fontColor;
 
-        public UITextButtonStyle() {
-            super();
-            font= UIFont.ROBOTO_BOLD;
-            fontColor="0000000";
+
+        public static UITextButtonStyle getStyle(){
+            UITextButtonStyle style=new UITextButtonStyle();
+            UIButtonStyle buttonStyle=UIButtonStyle.getStyle();
+            style.background=buttonStyle.background;
+            style.pressedColor=buttonStyle.pressedColor;
+            style.unpressedColor=buttonStyle.unpressedColor;
+            style.font= UIFont.ROBOTO_BOLD;
+            style.fontColor="0000000";
+            return style;
         }
+
     }
 }

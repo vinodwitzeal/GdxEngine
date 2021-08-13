@@ -13,6 +13,11 @@ public abstract class UIScreen implements Screen {
     public Stage stage;
     public Color clearColor;
     public int width,height;
+
+    public UIScreen(EngineController controller){
+        this(controller,"ffffff");
+    }
+
     public UIScreen(EngineController controller,String clearColor){
         this.controller=controller;
         this.clearColor=Color.valueOf(clearColor);
@@ -20,9 +25,7 @@ public abstract class UIScreen implements Screen {
         this.height=Gdx.graphics.getHeight();
     }
 
-    public UIScreen(EngineController controller){
-        this(controller,"ffffff");
-    }
+
 
     protected void buildStage(){
         stage=new Stage(new ScreenViewport());
